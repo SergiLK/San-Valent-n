@@ -238,7 +238,7 @@
       }
     }
 
-    // Transición con corazones (para entrada suave desde index.html)
+    // Transición con corazones
     function transitionHearts(intensity = 90){
       transition.innerHTML = "";
       transition.classList.add('show');
@@ -265,9 +265,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       if(sessionStorage.getItem('fromIntro') === '1'){
         transitionHearts(95);
-        // quitamos bandera
         sessionStorage.removeItem('fromIntro');
-        // apagamos overlay tras un momento
         setTimeout(() => transition.classList.remove('show'), 450);
       }
     });
@@ -315,22 +313,15 @@
       }
     });
 
-    // Acción del SÍ (pantalla final simple)
+    // Acción del SÍ -> ir a carta.html (manteniendo tu mensaje para la siguiente pantalla)
     yesBtn.addEventListener('click', () => {
-      msg.innerHTML = "💖 JEJE i knew it  🌷💞";
+      sessionStorage.setItem('fromQuestion', '1');
+      transitionHearts(95);
       burst(70);
 
-      // un ratito más de corazones
-      clearInterval(heartTimer);
-      heartTimer = setInterval(() => makeHeart(), 120);
       setTimeout(() => {
-        clearInterval(heartTimer);
-        heartTimer = setInterval(() => makeHeart(), 220);
-      }, 6000);
-
-      // opcional: desactivar botones tras aceptar
-      yesBtn.disabled = true;
-      yesBtn.style.filter = "brightness(1.05)";
+        window.location.href = "./carta.html";
+      }, 750);
     });
   </script>
 </body>
