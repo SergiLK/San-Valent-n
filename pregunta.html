@@ -188,7 +188,7 @@
   <div class="wrap">
     <div class="card">
       <h1>¿Quieres ser mi San Valentín? 💖</h1>
-      <p>Te lo pregunto con tulipanes de fondo 🌷✨</p>
+      <p>Son tulipanes lo del fondo :)</p>
 
       <div class="btns">
         <button id="yesBtn" style="--scale:1">Sííí 💘</button>
@@ -278,10 +278,10 @@
 
     const phrases = [
       "¿Segurísimo? 🥺",
-      "Piénsalo otra vez... 🌷",
+      "Piénsalo otra vez anda... ",
       "Bueno… pero mira ese 'Sí' 😳",
-      "Ay… me estás obligando a insistir 💘",
-      "Última oportunidad para el 'No' 🙈"
+      "Me estás obligando a insistir 😠 ",
+      "Última oportunidad para el 'No' "
     ];
 
     function setYesScale(scale){
@@ -309,7 +309,7 @@
         noBtn.style.opacity = "0";
         noBtn.style.pointerEvents = "none";
         setTimeout(() => noBtn.remove(), 260);
-        msg.textContent = "Vale… entonces solo queda decir que SÍ 😌💘";
+        msg.textContent = "Vale… entonces solo queda decir que SÍ 😌";
         // y hacemos que el sí destaque aún más
         setYesScale(Math.min(2.6, yesScale + 0.35));
       }
@@ -317,7 +317,7 @@
 
     // Acción del SÍ (pantalla final simple)
     yesBtn.addEventListener('click', () => {
-      msg.innerHTML = "AAAAA 😭💖 ¡SÍ! Me has hecho el día 🌷💞";
+      msg.innerHTML = "💖 JEJE i knew it  🌷💞";
       burst(70);
 
       // un ratito más de corazones
@@ -334,4 +334,5 @@
     });
   </script>
 </body>
+
 </html>
