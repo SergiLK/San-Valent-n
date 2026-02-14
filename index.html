@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>🌷 ¿San Valentín? 💖</title>
+  <title>💖 San Valentín 💖</title>
   <style>
     :root{
       --pink:#ff4d88;
@@ -11,6 +11,7 @@
       --red:#ff1e3a;
       --shadow: 0 18px 50px rgba(0,0,0,.25);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -24,14 +25,14 @@
         linear-gradient(135deg, #ff2b6b, #ff4d88 35%, #ff1e3a);
     }
 
-    /* Fondo tulipanes */
+    /* Fondo tulipanes (más oscuros) */
     body::before{
       content:"";
       position:fixed; inset:0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff7aa8'/%3E%3Cstop offset='1' stop-color='%23ff2e63'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg opacity='.42'%3E%3Cg fill='none' stroke='%2337d67a' stroke-width='5' stroke-linecap='round'%3E%3Cpath d='M40 210 C45 160, 55 140, 70 110'/%3E%3Cpath d='M120 210 C118 165, 130 145, 150 105'/%3E%3Cpath d='M200 210 C190 165, 195 145, 180 110'/%3E%3C/g%3E%3Cg fill='%232fd36b' opacity='.55'%3E%3Cpath d='M58 170 C35 165, 28 150, 40 140 C52 130, 70 145, 58 170 Z'/%3E%3Cpath d='M142 170 C120 162, 114 150, 126 140 C138 130, 154 145, 142 170 Z'/%3E%3Cpath d='M188 168 C206 162, 214 150, 202 140 C190 130, 176 145, 188 168 Z'/%3E%3C/g%3E%3Cg%3E%3Cpath d='M70 110 C58 105, 56 88, 70 82 C77 70, 92 70, 98 82 C112 88, 110 105, 98 110 C90 116, 78 116, 70 110 Z' fill='url(%23g)'/%3E%3Cpath d='M150 105 C138 100, 136 84, 150 78 C157 66, 172 66, 178 78 C192 84, 190 100, 178 105 C170 111, 158 111, 150 105 Z' fill='url(%23g)'/%3E%3Cpath d='M180 110 C168 105, 166 88, 180 82 C187 70, 202 70, 208 82 C222 88, 220 105, 208 110 C200 116, 188 116, 180 110 Z' fill='url(%23g)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff2f7d'/%3E%3Cstop offset='1' stop-color='%23cc0044'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg opacity='.50'%3E%3Cg fill='none' stroke='%2337d67a' stroke-width='5' stroke-linecap='round'%3E%3Cpath d='M40 210 C45 160, 55 140, 70 110'/%3E%3Cpath d='M120 210 C118 165, 130 145, 150 105'/%3E%3Cpath d='M200 210 C190 165, 195 145, 180 110'/%3E%3C/g%3E%3Cg fill='%232fd36b' opacity='.55'%3E%3Cpath d='M58 170 C35 165, 28 150, 40 140 C52 130, 70 145, 58 170 Z'/%3E%3Cpath d='M142 170 C120 162, 114 150, 126 140 C138 130, 154 145, 142 170 Z'/%3E%3Cpath d='M188 168 C206 162, 214 150, 202 140 C190 130, 176 145, 188 168 Z'/%3E%3C/g%3E%3Cg%3E%3Cpath d='M70 110 C58 105, 56 88, 70 82 C77 70, 92 70, 98 82 C112 88, 110 105, 98 110 C90 116, 78 116, 70 110 Z' fill='url(%23g)'/%3E%3Cpath d='M150 105 C138 100, 136 84, 150 78 C157 66, 172 66, 178 78 C192 84, 190 100, 178 105 C170 111, 158 111, 150 105 Z' fill='url(%23g)'/%3E%3Cpath d='M180 110 C168 105, 166 88, 180 82 C187 70, 202 70, 208 82 C222 88, 220 105, 208 110 C200 116, 188 116, 180 110 Z' fill='url(%23g)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       background-size: 240px 240px;
       background-repeat: repeat;
-      opacity:.35;
+      opacity:.45;
       pointer-events:none;
     }
 
@@ -43,6 +44,7 @@
       padding:24px;
       z-index:1;
     }
+
     .card{
       width:min(720px, 92vw);
       background: rgba(255,255,255,.12);
@@ -60,6 +62,7 @@
       font-size: clamp(28px, 3.6vw, 44px);
       text-shadow: 0 10px 22px rgba(0,0,0,.25);
     }
+
     p{
       margin: 12px 0 0;
       font-size: clamp(15px, 2vw, 18px);
@@ -67,44 +70,34 @@
     }
 
     .btns{
-      margin-top: 20px;
+      margin-top: 18px;
       display:flex;
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
-      align-items:center;
     }
 
     button{
       border:0;
       padding: 12px 18px;
       border-radius: 999px;
-      font-weight: 900;
+      font-weight: 800;
       cursor:pointer;
       color:#fff;
       background: linear-gradient(135deg, var(--hot), var(--red));
       box-shadow: 0 14px 28px rgba(0,0,0,.25);
-      transition: transform .22s ease, filter .22s ease, opacity .25s ease;
+      transition: transform .2s ease, filter .2s ease;
       font-size: 16px;
-      transform: scale(var(--scale, 1));
     }
-    button:hover{ transform: scale(calc(var(--scale, 1) * 1.03)); filter: brightness(1.05); }
-    button:active{ transform: scale(calc(var(--scale, 1) * 0.99)); }
+    button:hover{ transform: translateY(-2px) scale(1.02); filter: brightness(1.05); }
+    button:active{ transform: translateY(1px) scale(.99); }
 
     .ghost{
       background: rgba(255,255,255,.18);
       border: 1px solid rgba(255,255,255,.25);
-      font-weight: 800;
     }
 
-    #msg{
-      margin-top: 10px;
-      font-size: 14px;
-      opacity:.9;
-      min-height: 20px;
-    }
-
-    /* Corazones flotantes */
+    /* Corazones flotantes suaves */
     .hearts{
       position:fixed; inset:0;
       pointer-events:none;
@@ -135,7 +128,7 @@
       to{ transform: translateY(-110vh) rotate(45deg) scale(var(--s,1)); opacity:0; }
     }
 
-    /* Overlay transición */
+    /* Transición full-screen */
     .transition{
       position:fixed; inset:0;
       background: rgba(255, 45, 99, .18);
@@ -151,6 +144,7 @@
       pointer-events:auto;
     }
 
+    /* corazones de transición */
     .t-heart{
       position:absolute;
       width:22px; height:22px;
@@ -178,21 +172,6 @@
     @media (prefers-reduced-motion: reduce){
       *{ animation: none !important; transition: none !important; }
     }
-
-    /* ---- AÑADIDO: mensaje grande + botón inicio ---- */
-    #msg.big {
-      margin-top: 18px;
-      font-size: clamp(26px, 5vw, 56px);
-      font-weight: 900;
-      line-height: 1.1;
-      text-shadow: 0 14px 28px rgba(0,0,0,.28);
-      opacity: 1;
-    }
-
-    #homeBtn {
-      display: none;
-      margin-top: 16px;
-    }
   </style>
 </head>
 
@@ -202,31 +181,22 @@
 
   <div class="wrap">
     <div class="card">
-      <h1>¿Quieres ser mi San Valentín? 💖</h1>
-      <p>Son tulipanes lo del fondo :)</p>
+      <h1>💘 Tengo algo que decirte… 💘</h1>
+      <p>Un mini viaje con corazones, tulipanes y una pregunta importante 🌷✨</p>
 
       <div class="btns">
-        <button id="yesBtn" style="--scale:1">Sííí 💘</button>
-        <button id="noBtn" class="ghost">No 🙈</button>
+        <button id="goBtn">Continuar 💞</button>
+        <button class="ghost" id="moreBtn">Más corazones 😳</button>
       </div>
-
-      <div id="msg"></div>
-      <button id="homeBtn" class="ghost">Volver al inicio 🏠</button>
     </div>
   </div>
 
   <script>
     const layer = document.getElementById('heartsLayer');
     const transition = document.getElementById('transition');
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn  = document.getElementById('noBtn');
-    const msg    = document.getElementById('msg');
-    const homeBtn = document.getElementById('homeBtn');
-    const btns = document.querySelector('.btns');
 
     function rand(min, max){ return Math.random() * (max - min) + min; }
 
-    // Corazones flotantes suaves
     function makeHeart(x = rand(0, window.innerWidth)){
       const h = document.createElement('div');
       h.className = 'heart';
@@ -247,17 +217,17 @@
       layer.appendChild(h);
       setTimeout(() => h.remove(), dur * 1000);
     }
+
     let heartTimer = setInterval(() => makeHeart(), 220);
 
-    function burst(n = 40){
+    function burst(n = 30){
       const center = window.innerWidth / 2;
       for(let i=0;i<n;i++){
-        setTimeout(() => makeHeart(center + rand(-260, 260)), i * 16);
+        setTimeout(() => makeHeart(center + rand(-220, 220)), i * 18);
       }
     }
 
-    // Transición con corazones (para entrada suave desde index.html)
-    function transitionHearts(intensity = 90){
+    function transitionHearts(intensity = 70){
       transition.innerHTML = "";
       transition.classList.add('show');
 
@@ -279,81 +249,17 @@
       }
     }
 
-    // Si venimos de index.html, hacemos fade-out de la transición al entrar
-    window.addEventListener('DOMContentLoaded', () => {
-      if(sessionStorage.getItem('fromIntro') === '1'){
-        transitionHearts(95);
-        sessionStorage.removeItem('fromIntro');
-        setTimeout(() => transition.classList.remove('show'), 450);
-      }
-    });
+    document.getElementById('moreBtn').addEventListener('click', () => burst(45));
 
-    // --- Lógica NO: cada click hace crecer el SÍ y al final NO desaparece ---
-    let noClicks = 0;
-    let yesScale = 1;
+    document.getElementById('goBtn').addEventListener('click', () => {
+      sessionStorage.setItem('fromIntro', '1');
 
-    const phrases = [
-      "¿Segurísimo? 🥺",
-      "Piénsalo otra vez anda... ",
-      "Bueno… pero mira ese 'Sí' 😳",
-      "Me estás obligando a insistir 😠 ",
-      "Última oportunidad para el 'No' "
-    ];
+      transitionHearts(95);
+      burst(55);
 
-    function setYesScale(scale){
-      yesScale = scale;
-      yesBtn.style.setProperty('--scale', yesScale.toFixed(2));
-    }
-
-    noBtn.addEventListener('click', () => {
-      noClicks++;
-
-      // El sí crece cada vez
-      setYesScale(yesScale + 0.25);
-
-      // Mensajito gracioso
-      msg.textContent = phrases[Math.min(noClicks-1, phrases.length-1)] || "😈";
-
-      // “No” va perdiendo fuerza / visibilidad
-      noBtn.style.transform = `scale(${Math.max(0.9, 1 - noClicks*0.06)})`;
-      noBtn.style.opacity = `${Math.max(0, 1 - noClicks*0.18)}`;
-
-      burst(22);
-
-      // Al final desaparece el NO
-      if(noClicks >= 6){
-        noBtn.style.opacity = "0";
-        noBtn.style.pointerEvents = "none";
-        setTimeout(() => noBtn.remove(), 260);
-        msg.textContent = "Vale… entonces solo queda decir que SÍ 😌";
-        // y hacemos que el sí destaque aún más
-        setYesScale(Math.min(2.6, yesScale + 0.35));
-      }
-    });
-
-    // Acción del SÍ (mensaje grande + botón volver)
-    yesBtn.addEventListener('click', () => {
-      msg.classList.add('big');
-      msg.textContent = "💖 JEJE i knew it  🌷💞";
-      burst(70);
-
-      // un ratito más de corazones
-      clearInterval(heartTimer);
-      heartTimer = setInterval(() => makeHeart(), 120);
       setTimeout(() => {
-        clearInterval(heartTimer);
-        heartTimer = setInterval(() => makeHeart(), 220);
-      }, 6000);
-
-      // ocultar botones Sí/No
-      if (btns) btns.style.display = "none";
-
-      // mostrar botón volver al inicio
-      homeBtn.style.display = "inline-block";
-    });
-
-    homeBtn.addEventListener('click', () => {
-      window.location.href = "./index.html";
+        window.location.href = "./pregunta.html";
+      }, 750);
     });
   </script>
 </body>
