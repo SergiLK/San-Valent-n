@@ -172,12 +172,44 @@
     @media (prefers-reduced-motion: reduce){
       *{ animation: none !important; transition: none !important; }
     }
+    /* Entrada suave */
+.card{
+  animation: introCard .85s cubic-bezier(.2,.9,.2,1) both;
+}
+
+@keyframes introCard{
+  from{
+    opacity: 0;
+    transform: translateY(16px) scale(.985);
+    filter: blur(6px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+    #introOverlay{
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.18), rgba(255,255,255,0) 55%),
+              rgba(0,0,0,.18);
+  opacity: 1;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity .7s ease;
+}
+
+#introOverlay.hide{
+  opacity: 0;
+}
   </style>
 </head>
 
 <body>
   <div class="hearts" id="heartsLayer"></div>
   <div class="transition" id="transition"></div>
+  <div id="introOverlay"></div>
 
   <div class="wrap">
     <div class="card">
@@ -192,6 +224,10 @@
   </div>
 
   <script>
+    window.addEventListener('load', () => {
+  const o = document.getElementById('introOverlay');
+  if(o) setTimeout(() => o.classList.add('hide'), 120);
+});
     const layer = document.getElementById('heartsLayer');
     const transition = document.getElementById('transition');
 
@@ -264,4 +300,5 @@
   </script>
 </body>
 </html>
+
 
