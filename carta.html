@@ -337,14 +337,16 @@ Y me haría mucha ilusión...
       }
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      if(sessionStorage.getItem('fromQuestion') === '1'){
-        transitionHearts(95);
-        sessionStorage.removeItem('fromQuestion');
-        setTimeout(() => transition.classList.remove('show'), 450);
-        burst(60);
-      }
-    });
+   window.addEventListener('DOMContentLoaded', () => {
+  if(sessionStorage.getItem('fromQuestion') === '1'){
+    transitionHearts(95);
+    sessionStorage.removeItem('fromQuestion');
+    setTimeout(() => transition.classList.remove('show'), 450);
+    burst(60);
+  } else {
+    window.location.replace("./index.html");
+  }
+});
 
     envelope.addEventListener('click', () => {
       envelope.classList.toggle('open');
@@ -356,4 +358,5 @@ Y me haría mucha ilusión...
     });
   </script>
 </body>
+
 </html>
