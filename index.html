@@ -15,6 +15,8 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
+      opacity: 0;
+transition: opacity .9s ease;
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:#fff;
@@ -24,6 +26,9 @@
         radial-gradient(900px 700px at 80% 30%, rgba(255,255,255,.14), transparent 55%),
         linear-gradient(135deg, #ff2b6b, #ff4d88 35%, #ff1e3a);
     }
+    body.page-ready{
+  opacity: 1;
+}
 
     /* Fondo tulipanes (más oscuros) */
     body::before{
@@ -303,6 +308,7 @@
   </script>
 </body>
 </html>
+
 
 
 
