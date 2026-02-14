@@ -263,12 +263,15 @@
 
     // Si venimos de index.html, hacemos fade-out de la transición al entrar
     window.addEventListener('DOMContentLoaded', () => {
-      if(sessionStorage.getItem('fromIntro') === '1'){
-        transitionHearts(95);
-        sessionStorage.removeItem('fromIntro');
-        setTimeout(() => transition.classList.remove('show'), 450);
-      }
-    });
+  if(sessionStorage.getItem('fromIntro') === '1'){
+    transitionHearts(95);
+    sessionStorage.removeItem('fromIntro');
+    setTimeout(() => transition.classList.remove('show'), 450);
+  } else {
+    // Si entran directo a pregunta.html, vuelve a la portada
+    window.location.replace("./index.html");
+  }
+});
 
     // --- Lógica NO: cada click hace crecer el SÍ y al final NO desaparece ---
     let noClicks = 0;
@@ -327,3 +330,4 @@
 </body>
 
 </html>
+
