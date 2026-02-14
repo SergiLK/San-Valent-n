@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>💖 San Valentín 💖</title>
+  <title>🌷 ¿San Valentín? 💖</title>
   <style>
     :root{
       --pink:#ff4d88;
@@ -11,7 +11,6 @@
       --red:#ff1e3a;
       --shadow: 0 18px 50px rgba(0,0,0,.25);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -44,7 +43,6 @@
       padding:24px;
       z-index:1;
     }
-
     .card{
       width:min(720px, 92vw);
       background: rgba(255,255,255,.12);
@@ -62,7 +60,6 @@
       font-size: clamp(28px, 3.6vw, 44px);
       text-shadow: 0 10px 22px rgba(0,0,0,.25);
     }
-
     p{
       margin: 12px 0 0;
       font-size: clamp(15px, 2vw, 18px);
@@ -70,34 +67,44 @@
     }
 
     .btns{
-      margin-top: 18px;
+      margin-top: 20px;
       display:flex;
       gap:12px;
       justify-content:center;
       flex-wrap:wrap;
+      align-items:center;
     }
 
     button{
       border:0;
       padding: 12px 18px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       cursor:pointer;
       color:#fff;
       background: linear-gradient(135deg, var(--hot), var(--red));
       box-shadow: 0 14px 28px rgba(0,0,0,.25);
-      transition: transform .2s ease, filter .2s ease;
+      transition: transform .22s ease, filter .22s ease, opacity .25s ease;
       font-size: 16px;
+      transform: scale(var(--scale, 1));
     }
-    button:hover{ transform: translateY(-2px) scale(1.02); filter: brightness(1.05); }
-    button:active{ transform: translateY(1px) scale(.99); }
+    button:hover{ transform: scale(calc(var(--scale, 1) * 1.03)); filter: brightness(1.05); }
+    button:active{ transform: scale(calc(var(--scale, 1) * 0.99)); }
 
     .ghost{
       background: rgba(255,255,255,.18);
       border: 1px solid rgba(255,255,255,.25);
+      font-weight: 800;
     }
 
-    /* Corazones flotantes suaves */
+    #msg{
+      margin-top: 10px;
+      font-size: 14px;
+      opacity:.9;
+      min-height: 20px;
+    }
+
+    /* Corazones flotantes */
     .hearts{
       position:fixed; inset:0;
       pointer-events:none;
@@ -128,7 +135,7 @@
       to{ transform: translateY(-110vh) rotate(45deg) scale(var(--s,1)); opacity:0; }
     }
 
-    /* Transición full-screen */
+    /* Overlay transición */
     .transition{
       position:fixed; inset:0;
       background: rgba(255, 45, 99, .18);
@@ -144,7 +151,6 @@
       pointer-events:auto;
     }
 
-    /* corazones de transición (más intensos) */
     .t-heart{
       position:absolute;
       width:22px; height:22px;
@@ -172,6 +178,21 @@
     @media (prefers-reduced-motion: reduce){
       *{ animation: none !important; transition: none !important; }
     }
+
+    /* ---- AÑADIDO: mensaje grande + botón inicio ---- */
+    #msg.big {
+      margin-top: 18px;
+      font-size: clamp(26px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.1;
+      text-shadow: 0 14px 28px rgba(0,0,0,.28);
+      opacity: 1;
+    }
+
+    #homeBtn {
+      display: none;
+      margin-top: 16px;
+    }
   </style>
 </head>
 
@@ -181,24 +202,31 @@
 
   <div class="wrap">
     <div class="card">
-      <h1>💘 Tengo algo que decirte… 💘</h1>
-      <p>Un mini viaje con corazones, tulipanes y una pregunta importante 🌷✨</p>
+      <h1>¿Quieres ser mi San Valentín? 💖</h1>
+      <p>Son tulipanes lo del fondo :)</p>
 
       <div class="btns">
-        <button id="goBtn">Continuar 💞</button>
-        <button class="ghost" id="moreBtn">Más corazones 😳</button>
+        <button id="yesBtn" style="--scale:1">Sííí 💘</button>
+        <button id="noBtn" class="ghost">No 🙈</button>
       </div>
+
+      <div id="msg"></div>
+      <button id="homeBtn" class="ghost">Volver al inicio 🏠</button>
     </div>
   </div>
 
   <script>
-    // --- Helpers ---
     const layer = document.getElementById('heartsLayer');
     const transition = document.getElementById('transition');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn  = document.getElementById('noBtn');
+    const msg    = document.getElementById('msg');
+    const homeBtn = document.getElementById('homeBtn');
+    const btns = document.querySelector('.btns');
 
     function rand(min, max){ return Math.random() * (max - min) + min; }
 
-    // Corazones flotantes (suaves)
+    // Corazones flotantes suaves
     function makeHeart(x = rand(0, window.innerWidth)){
       const h = document.createElement('div');
       h.className = 'heart';
@@ -219,24 +247,24 @@
       layer.appendChild(h);
       setTimeout(() => h.remove(), dur * 1000);
     }
-
     let heartTimer = setInterval(() => makeHeart(), 220);
 
-    function burst(n = 30){
+    function burst(n = 40){
       const center = window.innerWidth / 2;
       for(let i=0;i<n;i++){
-        setTimeout(() => makeHeart(center + rand(-220, 220)), i * 18);
+        setTimeout(() => makeHeart(center + rand(-260, 260)), i * 16);
       }
     }
 
-    // Transición con corazones (overlay)
-    function transitionHearts(intensity = 70){
-      transition.innerHTML = ""; // limpiar
+    // Transición con corazones (para entrada suave desde index.html)
+    function transitionHearts(intensity = 90){
+      transition.innerHTML = "";
       transition.classList.add('show');
 
       for(let i=0;i<intensity;i++){
         const th = document.createElement('div');
         th.className = 't-heart';
+
         const x = rand(0, window.innerWidth);
         const y = rand(0, window.innerHeight);
         const hueShift = rand(-10, 10);
@@ -251,20 +279,81 @@
       }
     }
 
-    // Botones
-    document.getElementById('moreBtn').addEventListener('click', () => burst(45));
+    // Si venimos de index.html, hacemos fade-out de la transición al entrar
+    window.addEventListener('DOMContentLoaded', () => {
+      if(sessionStorage.getItem('fromIntro') === '1'){
+        transitionHearts(95);
+        sessionStorage.removeItem('fromIntro');
+        setTimeout(() => transition.classList.remove('show'), 450);
+      }
+    });
 
-    document.getElementById('goBtn').addEventListener('click', () => {
-      // marca para que la siguiente página haga "fade out" al entrar
-      sessionStorage.setItem('fromIntro', '1');
+    // --- Lógica NO: cada click hace crecer el SÍ y al final NO desaparece ---
+    let noClicks = 0;
+    let yesScale = 1;
 
-      transitionHearts(95);
-      burst(55);
+    const phrases = [
+      "¿Segurísimo? 🥺",
+      "Piénsalo otra vez anda... ",
+      "Bueno… pero mira ese 'Sí' 😳",
+      "Me estás obligando a insistir 😠 ",
+      "Última oportunidad para el 'No' "
+    ];
 
-      // ir a la segunda página tras la animación
+    function setYesScale(scale){
+      yesScale = scale;
+      yesBtn.style.setProperty('--scale', yesScale.toFixed(2));
+    }
+
+    noBtn.addEventListener('click', () => {
+      noClicks++;
+
+      // El sí crece cada vez
+      setYesScale(yesScale + 0.25);
+
+      // Mensajito gracioso
+      msg.textContent = phrases[Math.min(noClicks-1, phrases.length-1)] || "😈";
+
+      // “No” va perdiendo fuerza / visibilidad
+      noBtn.style.transform = `scale(${Math.max(0.9, 1 - noClicks*0.06)})`;
+      noBtn.style.opacity = `${Math.max(0, 1 - noClicks*0.18)}`;
+
+      burst(22);
+
+      // Al final desaparece el NO
+      if(noClicks >= 6){
+        noBtn.style.opacity = "0";
+        noBtn.style.pointerEvents = "none";
+        setTimeout(() => noBtn.remove(), 260);
+        msg.textContent = "Vale… entonces solo queda decir que SÍ 😌";
+        // y hacemos que el sí destaque aún más
+        setYesScale(Math.min(2.6, yesScale + 0.35));
+      }
+    });
+
+    // Acción del SÍ (mensaje grande + botón volver)
+    yesBtn.addEventListener('click', () => {
+      msg.classList.add('big');
+      msg.textContent = "💖 JEJE i knew it  🌷💞";
+      burst(70);
+
+      // un ratito más de corazones
+      clearInterval(heartTimer);
+      heartTimer = setInterval(() => makeHeart(), 120);
       setTimeout(() => {
-        window.location.href = "pregunta.html";
-      }, 750);
+        clearInterval(heartTimer);
+        heartTimer = setInterval(() => makeHeart(), 220);
+      }, 6000);
+
+      // ocultar botones Sí/No
+      if (btns) btns.style.display = "none";
+
+      // mostrar botón volver al inicio
+      homeBtn.style.display = "inline-block";
+    });
+
+    homeBtn.addEventListener('click', () => {
+      window.location.href = "./index.html";
     });
   </script>
 </body>
