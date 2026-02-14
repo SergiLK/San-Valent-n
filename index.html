@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>💖 San Valentín 💖</title>
+  <style>
+    :root{
+      --pink:#ff4d88;
+      --hot:#ff2e63;
+      --red:#ff1e3a;
+      --soft:#fff0f6;
+      --text:#fff;
+      --shadow: 0 18px 50px rgba(0,0,0,.25);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      overflow:hidden;
+      background:
+        radial-gradient(1200px 800px at 20% 20%, rgba(255,255,255,.18), transparent 60%),
+        radial-gradient(900px 700px at 80% 30%, rgba(255,255,255,.14), transparent 55%),
+        linear-gradient(135deg, #ff2b6b, #ff4d88 35%, #ff1e3a);
+    }
+
+    /* Fondo de tulipanes (patrón SVG en data-uri) */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23ff7aa8'/%3E%3Cstop offset='1' stop-color='%23ff2e63'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='220' height='220' fill='none'/%3E%3Cg opacity='.40'%3E%3C!-- tallos --%3E%3Cg fill='none' stroke='%2337d67a' stroke-width='5' stroke-linecap='round'%3E%3Cpath d='M40 210 C45 160, 55 140, 70 110'/%3E%3Cpath d='M120 210 C118 165, 130 145, 150 105'/%3E%3Cpath d='M200 210 C190 165, 195 145, 180 110'/%3E%3C/g%3E%3C!-- hojas --%3E%3Cg fill='%232fd36b' opacity='.55'%3E%3Cpath d='M58 170 C35 165, 28 150, 40 140 C52 130, 70 145, 58 170 Z'/%3E%3Cpath d='M142 170 C120 162, 114 150, 126 140 C138 130, 154 145, 142 170 Z'/%3E%3Cpath d='M188 168 C206 162, 214 150, 202 140 C190 130, 176 145, 188 168 Z'/%3E%3C/g%3E%3C!-- tulipanes --%3E%3Cg%3E%3Cpath d='M70 110 C58 105, 56 88, 70 82 C77 70, 92 70, 98 82 C112 88, 110 105, 98 110 C90 116, 78 116, 70 110 Z' fill='url(%23g)'/%3E%3Cpath d='M150 105 C138 100, 136 84, 150 78 C157 66, 172 66, 178 78 C192 84, 190 100, 178 105 C170 111, 158 111, 150 105 Z' fill='url(%23g)'/%3E%3Cpath d='M180 110 C168 105, 166 88, 180 82 C187 70, 202 70, 208 82 C222 88, 220 105, 208 110 C200 116, 188 116, 180 110 Z' fill='url(%23g)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background-size: 240px 240px;
+      background-repeat: repeat;
+      opacity:.35;
+      filter: blur(.2px);
+      pointer-events:none;
+      transform: scale(1.02);
+    }
+
+    /* brillo suave */
+    body::after{
+      content:"";
+      position:fixed; inset:-20%;
+      background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.12), transparent 55%);
+      pointer-events:none;
+      animation: glow 6s ease-in-out infinite alternate;
+      mix-blend-mode: screen;
+    }
+    @keyframes glow{
+      from{ transform: translate(-1%, -1%) scale(1); }
+      to{ transform: translate(1%, 1%) scale(1.02); }
+    }
+
+    .wrap{
+      position:relative;
+      height:100%;
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+
+    .card{
+      width:min(680px, 92vw);
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .card header{
+      padding:26px 26px 0 26px;
+      text-align:center;
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(28px, 3.6vw, 44px);
+      letter-spacing:.3px;
+      text-shadow: 0 10px 22px rgba(0,0,0,.25);
+    }
+    p{
+      margin:12px 0 0 0;
+      font-size: clamp(15px, 2vw, 18px);
+      opacity:.95;
+    }
+
+    .screens{
+      position:relative;
+      min-height: 360px;
+    }
+
+    .screen{
+      position:absolute; inset:0;
+      padding: 22px 26px 26px 26px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:16px;
+
+      opacity:0;
+      transform: translateY(18px) scale(.98);
+      pointer-events:none;
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .screen.active{
+      opacity:1;
+      transform: translateY(0) scale(1);
+      pointer-events:auto;
+    }
+
+    .btns{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:8px;
+      position:relative;
+    }
+
+    button{
+      border:0;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor:pointer;
+      color:#fff;
+      background: linear-gradient(135deg, var(--hot), var(--red));
+      box-shadow: 0 14px 28px rgba(0,0,0,.25);
+      transition: transform .2s ease, filter .2s ease;
+      font-size: 16px;
+    }
+    button:hover{ transform: translateY(-2px) scale(1.02); filter: brightness(1.05); }
+    button:active{ transform: translateY(1px) scale(.99); }
+
+    .ghost{
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    /* Botón NO “escapista” */
+    #noBtn{
+      position:relative;
+    }
+
+    .hint{
+      font-size:14px;
+      opacity:.9;
+      margin-top:4px;
+    }
+
+    /* Corazones flotantes */
+    .hearts{
+      position:fixed; inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index: 10;
+    }
+    .heart{
+      position:absolute;
+      width:18px; height:18px;
+      transform: rotate(45deg);
+      opacity:.95;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 8px 10px rgba(0,0,0,.25));
+    }
+    .heart::before,
+    .heart::after{
+      content:"";
+      position:absolute;
+      width:18px; height:18px;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .heart::before{ left:-9px; top:0; }
+    .heart::after{ top:-9px; left:0; }
+
+    @keyframes floatUp{
+      from{ transform: translateY(20px) rotate(45deg) scale(var(--s,1)); opacity:0; }
+      10%{ opacity:.95; }
+      to{ transform: translateY(calc(-110vh)) rotate(45deg) scale(var(--s,1)); opacity:0; }
+    }
+
+    /* Pequeña animación de entrada del título */
+    .pop{
+      animation: pop .9s cubic-bezier(.2,.9,.2,1) both;
+    }
+    @keyframes pop{
+      from{ transform: translateY(10px) scale(.98); filter: blur(1px); opacity:0; }
+      to{ transform: translateY(0) scale(1); filter: blur(0); opacity:1; }
+    }
+
+    .big{
+      font-size: clamp(20px, 3vw, 28px);
+      text-align:center;
+      line-height:1.2;
+      text-shadow: 0 10px 22px rgba(0,0,0,.22);
+    }
+
+    .final{
+      font-size: clamp(18px, 2.6vw, 24px);
+      text-align:center;
+      line-height:1.25;
+    }
+
+    .footer{
+      padding: 0 26px 22px 26px;
+      text-align:center;
+      opacity:.85;
+      font-size: 13px;
+    }
+
+    /* Respeta “reducir movimiento” */
+    @media (prefers-reduced-motion: reduce){
+      *{ animation: none !important; transition: none !important; }
+      body::after{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="hearts" id="heartsLayer"></div>
+
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <h1 class="pop">💘 Tengo algo que decirte… 💘</h1>
+        <p>Un mini viaje con corazones, tulipanes y una pregunta importante.</p>
+      </header>
+
+      <div class="screens">
+        <!-- Pantalla 1 -->
+        <section class="screen active" id="s1">
+          <div class="big">He preparado esto solo para ti 🌷✨</div>
+          <div class="hint">Pulsa para continuar…</div>
+          <div class="btns">
+            <button id="goBtn">Continuar 💞</button>
+            <button class="ghost" id="sparkBtn">Más corazones 😳</button>
+          </div>
+        </section>
+
+        <!-- Pantalla 2 -->
+        <section class="screen" id="s2">
+          <div class="big">¿Quieres ser mi San Valentín? 💖</div>
+          <div class="btns" id="askBtns">
+            <button id="yesBtn">Sííí 💘</button>
+            <button class="ghost" id="noBtn">No 🙈</button>
+          </div>
+          <div class="hint">(Pista: el “No” es un poco tímido 😅)</div>
+        </section>
+
+        <!-- Pantalla 3 -->
+        <section class="screen" id="s3">
+          <div class="final">AAAAA 😭💖 ¡SÍ!<br/>Me has hecho el día 🌷💞</div>
+          <div class="btns">
+            <button id="restartBtn">Repetir ✨</button>
+          </div>
+          <div class="hint">Hearts mode: ON 💘</div>
+        </section>
+      </div>
+
+      <div class="footer">
+        Hecho con cariño ❤️ (puedes cambiar el texto dentro del archivo <b>index.html</b>)
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Pantallas / transiciones ---
+    const s1 = document.getElementById('s1');
+    const s2 = document.getElementById('s2');
+    const s3 = document.getElementById('s3');
+
+    const goBtn = document.getElementById('goBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn  = document.getElementById('noBtn');
+    const restartBtn = document.getElementById('restartBtn');
+    const sparkBtn = document.getElementById('sparkBtn');
+
+    function show(screen){
+      [s1,s2,s3].forEach(s => s.classList.remove('active'));
+      screen.classList.add('active');
+    }
+
+    goBtn.addEventListener('click', () => show(s2));
+    restartBtn.addEventListener('click', () => show(s1));
+
+    // --- Corazones flotantes ---
+    const layer = document.getElementById('heartsLayer');
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function makeHeart(x = rand(0, window.innerWidth)){
+      const h = document.createElement('div');
+      h.className = 'heart';
+
+      const size = rand(10, 26);
+      const dur  = rand(4.5, 9.5);
+      const hueShift = rand(-10, 10);
+
+      // Color base (variaciones rosa/rojo)
+      const color = `hsl(${350 + hueShift}, 95%, ${rand(58, 68)}%)`;
+
+      h.style.left = `${x}px`;
+      h.style.bottom = `-30px`;
+      h.style.width = `${size}px`;
+      h.style.height = `${size}px`;
+      h.style.background = color;
+      h.style.animationDuration = `${dur}s`;
+      h.style.setProperty('--s', rand(0.9, 1.35));
+
+      layer.appendChild(h);
+
+      // eliminar al terminar
+      setTimeout(() => h.remove(), dur * 1000);
+    }
+
+    // Lluvia constante suave
+    let heartTimer = setInterval(() => makeHeart(), 220);
+
+    // Explosión de corazones
+    function burst(n = 22){
+      const center = window.innerWidth / 2;
+      for(let i=0;i<n;i++){
+        setTimeout(() => makeHeart(center + rand(-180, 180)), i * 25);
+      }
+    }
+
+    sparkBtn.addEventListener('click', () => burst(35));
+
+    // --- Botón NO que se escapa ---
+    function moveNoButton(){
+      const pad = 14;
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = window.innerWidth  - btnRect.width  - pad;
+      const maxY = window.innerHeight - btnRect.height - pad;
+
+      const x = rand(pad, Math.max(pad, maxX));
+      const y = rand(pad, Math.max(pad, maxY));
+
+      // lo sacamos del flujo y lo movemos por pantalla
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top  = `${y}px`;
+      noBtn.style.zIndex = 9999;
+    }
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveNoButton(); }, {passive:false});
+
+    // --- YES ---
+    yesBtn.addEventListener('click', () => {
+      show(s3);
+      burst(60);
+
+      // subimos un poco la intensidad un rato
+      clearInterval(heartTimer);
+      heartTimer = setInterval(() => makeHeart(), 120);
+      setTimeout(() => {
+        clearInterval(heartTimer);
+        heartTimer = setInterval(() => makeHeart(), 220);
+      }, 7000);
+    });
+
+    // Adaptación al resize
+    window.addEventListener('resize', () => {
+      // si NO está en fixed aún, no hacemos nada
+      // si lo está, lo mantenemos dentro de pantalla
+      if(noBtn.style.position === 'fixed'){
+        moveNoButton();
+      }
+    });
+  </script>
+</body>
+</html>
